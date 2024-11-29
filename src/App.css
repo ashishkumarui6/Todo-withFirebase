@@ -1,0 +1,42 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  
+}
+.container .Allinput{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.Allinput input{
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.container .btn button{
+  padding: 10px 10px;
+  background-color: blue;
+  color: #fff !important;
+  border: none;
+  margin-bottom: 10px;
+  padding: 10px 50px;
+  font-size: 16px;
+  color: #000
+}
+
+
+
+ table thead tr th {
+    padding: 10px;
+  background-color: aqua;
+  padding: 5px 10px;
+}
+
+tbody tr td{
+  background-color: azure;
+  padding: 5px 10px;
+}
