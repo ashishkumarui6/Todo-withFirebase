@@ -1,0 +1,28 @@
+.m-table{
+    display: flex;
+}
+
+.m-table .m-th{
+    display: flex;
+}
+
+.m-table .m-td{
+    display: flex;
+}
+
+
+.D-btn{
+    background: red;
+    color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 5px 70px;
+  }
+  
+  .Up-btn{
+    background: green;
+    color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 5px 70px;
+  }

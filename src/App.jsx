@@ -1,7 +1,9 @@
 import React, { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import axios from "axios";
-import { v4 as id } from "uuid";
+import Navbar from "./components/Navbar";
+import Mobile from "./Mobile";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "User":
@@ -86,68 +88,86 @@ const App = () => {
   return (
     <>
       <div className="container">
-        <div>
-          <h2>PhoneBook</h2>
-          <div className="Allinput">
-            <input
-              value={state.name}
-              onChange={OnGetData}
-              type="text"
-              name=""
-              id="name"
-            />
-            <input
-              value={state.email}
-              onChange={OnGetData}
-              type="email"
-              name=""
-              id="email"
-            />
-            <input
-              value={state.phone}
-              onChange={OnGetData}
-              type="phone"
-              name=""
-              id="phone"
-            />
-          </div>
-          <div className="btn">
-            <button onClick={OnGetSaveData}>Add</button>
-          </div>
+        <div className="top">
+          <Navbar />
+          <h2>Todo with Firebase</h2>
         </div>
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th colSpan={2}>Action</th>
-              </tr>
-            </thead>
+        <hr />
+        <div className="content">
+          <div className="left">
+            <div className="Allinput">
+              <input
+                value={state.name}
+                onChange={OnGetData}
+                type="text"
+                name=""
+                id="name"
+                placeholder="Your Name"
+              />
+              <input
+                value={state.email}
+                onChange={OnGetData}
+                type="email"
+                name=""
+                placeholder="Your Email"
+                id="email"
+              />
+              <input
+                value={state.phone}
+                onChange={OnGetData}
+                type="phone"
+                name=""
+                placeholder="Your Phone"
+                id="phone"
+              />
+            </div>
+            <div className="btn">
+              <button onClick={OnGetSaveData}>Add</button>
+            </div>
+          </div>
+          <div className="right">
+            <table className="desk-table">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th colSpan={2}>Action</th>
+                </tr>
+              </thead>
+              {user.map((it, ix) => {
+                return (
+                  <tbody key={ix}>
+                    <tr>
+                      <td>{it.ix}</td>
+                      <td>{it.name}</td>
+                      <td>{it.email}</td>
+                      <td>{it.phone}</td>
+                      <td
+                        className="delete"
+                        onClick={() => onGetDelete(it.dId)}
+                      >
+                        Delete
+                      </td>
+                      <td className="edit">Update</td>
+                    </tr>
+                  </tbody>
+                );
+              })}
+            </table>
             {user.map((it, ix) => {
               return (
-                <tbody key={ix}>
-                  <tr>
-                    <td>{it.name}</td>
-                    <td>{it.email}</td>
-                    <td>{it.phone}</td>
-                    <td
-                      style={{
-                        backgroundColor: "Green",
-                        color: "#fff",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => onGetDelete(it.dId)}
-                    >
-                      Delete
-                    </td>
-                    <td style={{ backgroundColor: "yellow" }}>Edit</td>
-                  </tr>
-                </tbody>
+                <Mobile
+                  key={it.ix}
+                  name={it.name}
+                  email={it.email}
+                  phone={it.phone}
+                  onFn={() => onGetDelete(it.dId)}
+                />
               );
             })}
-          </table>
+          </div>
         </div>
       </div>
     </>
